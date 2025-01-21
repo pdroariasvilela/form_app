@@ -10,7 +10,7 @@ Este documento detalla cómo clonar, instalar y ejecutar el proyecto Flutter, in
    ```
    git clone git@github.com:pdroariasvilela/form_app.git
    cd flutter_application_form
-   ```bash
+   ```
 
 
 2.	Instala las dependencias del proyecto:
@@ -22,7 +22,7 @@ Este documento detalla cómo clonar, instalar y ejecutar el proyecto Flutter, in
 2.1 Verifica tu instalación de Flutter
 
 Asegúrate de que Flutter esté correctamente instalado ejecutando: 
-```bash
+```
 flutter doctor
 ```
 
