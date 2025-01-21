@@ -1,12 +1,12 @@
+import 'package:flutter_application_form/validators/email.dart';
 import 'package:formz/formz.dart';
-import '../validators/email.dart';
 import '../validators/password.dart';
 import '../validators/confirm_password.dart';
 import '../validators/required_text.dart';
-
-extension ErrorMessage on FormzInput {
+import '../validators/name.dart';
+extension ErrorMessageExtension<Value, ErrorType> on FormzInput<Value, ErrorType> {
   
-  String? get errorMessage => invalid ? _mapErrorToMessage() : null;
+  String? get errorMessage => !pure && invalid ? _mapErrorToMessage() : null;
 
   String _mapErrorToMessage() {
     if (error is EmailValidationError) {
@@ -40,6 +40,15 @@ extension ErrorMessage on FormzInput {
       switch (error as RequiredTextValidationError) {
         case RequiredTextValidationError.empty:
           return 'Este campo es obligatorio';
+      }
+    } else if (error is NameValidationError) {
+      switch (error as NameValidationError) {
+        case NameValidationError.empty:
+          return 'El nombre es obligatorio';
+        case NameValidationError.invalid:
+          return 'El nombre solo debe contener letras y espacios';
+        case NameValidationError.tooLong:
+          return 'El nombre no puede exceder los 30 caracteres';
       }
     }
     return 'Entrada inválida';

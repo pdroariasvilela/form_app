@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import '../widgets/custom_text.dart';
+import 'package:flutter_application_form/utils/validators.dart';
 import '../widgets/custom_text_form_field.dart';
 import '../validators/email.dart';
 import '../validators/password.dart';
 import '../validators/confirm_password.dart';
 import '../validators/required_text.dart';
-import '../utils/validators.dart';
-
+import '../validators/name.dart';
 
 class FormScreen extends StatefulWidget {
-
   const FormScreen({super.key});
 
   @override
@@ -28,6 +26,7 @@ class _FormScreenState extends State<FormScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
+  Name _name = const Name.pure();
   Email _email = const Email.pure();
   Password _password = const Password.pure();
   ConfirmPassword _confirmPassword = const ConfirmPassword.pure();
@@ -47,6 +46,7 @@ class _FormScreenState extends State<FormScreen> {
       _confirmPasswordController.clear();
 
       setState(() {
+        _name = const Name.pure();
         _email = const Email.pure();
         _password = const Password.pure();
         _confirmPassword = const ConfirmPassword.pure();
@@ -84,7 +84,18 @@ class _FormScreenState extends State<FormScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText(text: 'Nombre: ${_nameController.text}'),
+                CustomTextFormField(
+                  labelText: 'Nombre',
+                  hintText: 'Introduce tu nombre',
+                  prefixIcon: Icons.person,
+                  controller: _nameController,
+                  validator: (value) => _name.errorMessage,
+                  onChanged: (value) {
+                    setState(() {
+                      _name = Name.dirty(value);
+                    });
+                  },
+                ),
                 SizedBox(height: 16),
 
                 CustomTextFormField(
@@ -100,7 +111,6 @@ class _FormScreenState extends State<FormScreen> {
                   },
                 ),
                 SizedBox(height: 16),
-
                 CustomTextFormField(
                   labelText: 'Ciudad',
                   hintText: 'Introduce tu ciudad',
@@ -169,7 +179,7 @@ class _FormScreenState extends State<FormScreen> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50),
                   ),
-                  child: Text('Enviar'),
+                  child: Text('Registrarme'),
                 ),
               ],
             ),
