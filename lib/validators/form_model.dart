@@ -35,8 +35,8 @@ class PhoneInput extends FormzInput<String, String> {
 class ConfirmPasswordInput extends FormzInput<String, String> {
   final String password;
 
-  ConfirmPasswordInput.pure({this.password = ''}) : super.pure('');
-  ConfirmPasswordInput.dirty({required this.password, String value = ''})
+  const ConfirmPasswordInput.pure({this.password = ''}) : super.pure('');
+  const ConfirmPasswordInput.dirty({required this.password, String value = ''})
       : super.dirty(value);
 
   @override

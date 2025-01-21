@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'screens/form_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+ 
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Registro de Persona',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const FormScreen(),
+      title: 'Flutter Application Form',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: FormScreen(),
     );
   }
 }

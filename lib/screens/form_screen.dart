@@ -1,165 +1,178 @@
 import 'package:flutter/material.dart';
-import 'package:formz/formz.dart';
-import '../models/form_model.dart';
-import 'result_screen.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/custom_text_form_field.dart';
+import '../validators/email.dart';
+import '../validators/password.dart';
+import '../validators/confirm_password.dart';
+import '../validators/required_text.dart';
+import '../utils/validators.dart';
+
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({Key? key}) : super(key: key);
+
+  const FormScreen({super.key});
 
   @override
-  State<FormScreen> createState() => _FormScreenState();
+  _FormScreenState createState() => _FormScreenState();
 }
 
 class _FormScreenState extends State<FormScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  RequiredText _name = const RequiredText.pure();
-  EmailInput _email = const EmailInput.pure();
-  PhoneInput _phone = const PhoneInput.pure();
-  RequiredText _address = const RequiredText.pure();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
+
+  Email _email = const Email.pure();
+  Password _password = const Password.pure();
+  ConfirmPassword _confirmPassword = const ConfirmPassword.pure();
   RequiredText _city = const RequiredText.pure();
-  RequiredText _state = const RequiredText.pure();
-  RequiredText _zipCode = const RequiredText.pure();
-  AgeInput _age = const AgeInput.pure();
-
-  ConfirmPasswordInput _confirmPassword =
-      ConfirmPasswordInput.pure(password: '');
-
-  String? _getErrorMessage(FormzInput input) {
-    return input.invalid ? input.error : null;
-  }
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResultScreen(
-            name: _name.value,
-            email: _email.value,
-            phone: _phone.value,
-            address: _address.value,
-            city: _city.value,
-            state: _state.value,
-            zipCode: _zipCode.value,
-            age: _age.value,
-          ),
-        ),
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Formulario enviado con éxito')),
       );
+
+      _formKey.currentState!.reset();
+      _nameController.clear();
+      _emailController.clear();
+      _cityController.clear();
+      _passwordController.clear();
+      _confirmPasswordController.clear();
+
+      setState(() {
+        _email = const Email.pure();
+        _password = const Password.pure();
+        _confirmPassword = const ConfirmPassword.pure();
+        _city = const RequiredText.pure();
+      });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Por favor, completa todos los campos correctamente')),
+        SnackBar(content: Text('Por favor, corrige los errores en el formulario')),
       );
     }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _cityController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Persona'),
+        title: Text('Formulario de registro'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: ListView(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nombre',
-                  errorText: _getErrorMessage(_name),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _name = RequiredText.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(text: 'Nombre: ${_nameController.text}'),
+                SizedBox(height: 16),
+
+                CustomTextFormField(
                   labelText: 'Email',
-                  errorText: _getErrorMessage(_email),
+                  hintText: 'Introduce tu email',
+                  prefixIcon: Icons.email,
+                  controller: _emailController,
+                  validator: (value) => _email.errorMessage,
+                  onChanged: (value) {
+                    setState(() {
+                      _email = Email.dirty(value);
+                    });
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _email = EmailInput.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Teléfono',
-                  errorText: _getErrorMessage(_phone),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _phone = PhoneInput.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Dirección',
-                  errorText: _getErrorMessage(_address),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _address = RequiredText.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
+                SizedBox(height: 16),
+
+                CustomTextFormField(
                   labelText: 'Ciudad',
-                  errorText: _getErrorMessage(_city),
+                  hintText: 'Introduce tu ciudad',
+                  prefixIcon: Icons.location_city,
+                  controller: _cityController,
+                  validator: (value) => _city.errorMessage,
+                  onChanged: (value) {
+                    setState(() {
+                      _city = RequiredText.dirty(value);
+                    });
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _city = RequiredText.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Estado',
-                  errorText: _getErrorMessage(_state),
+                SizedBox(height: 16),
+
+                CustomTextFormField(
+                  labelText: 'Contraseña',
+                  hintText: 'Introduce tu contraseña',
+                  prefixIcon: Icons.lock,
+                  controller: _passwordController,
+                  obscureText: _obscurePassword,
+                  suffixIcon: _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  onSuffixIconPressed: () {
+                    setState(() {
+                      _obscurePassword = !_obscurePassword;
+                    });
+                  },
+                  validator: (value) => _password.errorMessage,
+                  onChanged: (value) {
+                    setState(() {
+                      _password = Password.dirty(value);
+                      _confirmPassword = ConfirmPassword.dirty(
+                        password: _password.value,
+                        value: _confirmPassword.value,
+                      );
+                    });
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _state = RequiredText.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Código Postal',
-                  errorText: _getErrorMessage(_zipCode),
+                SizedBox(height: 16),
+
+                CustomTextFormField(
+                  labelText: 'Confirmar Contraseña',
+                  hintText: 'Confirma tu contraseña',
+                  prefixIcon: Icons.lock,
+                  controller: _confirmPasswordController,
+                  obscureText: _obscureConfirmPassword,
+                  suffixIcon: _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                  onSuffixIconPressed: () {
+                    setState(() {
+                      _obscureConfirmPassword = !_obscureConfirmPassword;
+                    });
+                  },
+                  validator: (value) => _confirmPassword.errorMessage,
+                  onChanged: (value) {
+                    setState(() {
+                      _confirmPassword = ConfirmPassword.dirty(
+                        password: _password.value,
+                        value: value,
+                      );
+                    });
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _zipCode = RequiredText.dirty(value);
-                  });
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Edad',
-                  errorText: _getErrorMessage(_age),
+                SizedBox(height: 32),
+
+                ElevatedButton(
+                  onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                  child: Text('Enviar'),
                 ),
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    _age = AgeInput.dirty(value);
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: const Text('Registrar'),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

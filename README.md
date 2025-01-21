@@ -1,104 +1,75 @@
-# **Cómo clonar y ejecutar el proyecto**
+# Flutter Form Validation
 
-Este documento detalla cómo clonar, instalar y ejecutar el proyecto Flutter, incluidas instrucciones específicas para probarlo en dispositivos físicos como iOS y Android.
+![Flutter](https://img.shields.io/badge/Flutter-v3.27.2-blue.svg)
+![Dart](https://img.shields.io/badge/Dart-v3.6.1-blue.svg)
 
----
+## Descripción
 
-## **1. Clonar el proyecto**
-
-1. Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio:
-   ```
-   git clone git@github.com:pdroariasvilela/form_app.git
-   cd flutter_application_form
-   ```
+Este proyecto es un ejemplo de una aplicación Flutter que implementa un formulario con validaciones avanzadas utilizando el paquete [Formz](https://pub.dev/packages/formz). La aplicación demuestra cómo gestionar estados de formularios, realizar validaciones en tiempo real y proporcionar una experiencia de usuario fluida y responsiva.
 
 
-2.	Instala las dependencias del proyecto:
-   
-   ```- flutter pub get```
+## Capturas de Pantalla
 
-2. Configurar el entorno
+![Formulario Inicial](screenshots/sinerrores.png)
+*Formulario sin errores visibles al inicio.*
 
-2.1 Verifica tu instalación de Flutter
+![Formulario con Errores](screenshots/conerrores.png)
+*Mensajes de error aparecen al interactuar con los campos.*
 
-Asegúrate de que Flutter esté correctamente instalado ejecutando: 
+![Formulario Enviado](screenshots/enviado.png)
+*Mensaje de éxito tras enviar el formulario correctamente.*
+
+## Requisitos
+
+- **Flutter SDK:** ≥ 3.27.2
+- **Dart SDK:** ≥ 3.6.1
+- **Sistema Operativo:** Windows, macOS, Linux, o dispositivos móviles (iOS/Android)
+- **Editor de Código:** [Visual Studio Code](https://code.visualstudio.com/) o [Android Studio](https://developer.android.com/studio)
+
+## Instalación
+
+### 1. Clonar el Repositorio
+
+Abre tu terminal o línea de comandos y ejecuta:
+
+```bash
+git clone git@github.com:pdroariasvilela/form_app.git
 ```
+
+### 2. Navegar al Directorio del Proyecto
+```bash
+cd form_app
+```
+
+### 3. Instalar Dependencias
+```bash
+flutter pub get
+```
+### 4. Verificar la Configuración
+```bash
 flutter doctor
 ```
+Resuelve cualquier problema que aparezca antes de continuar.
 
-Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos los requisitos para iOS y Android estén marcados como [✓].
+### USO
 
-2.2 Configurar un emulador o dispositivo físico
-	•	Android:
-	1.	Conecta tu dispositivo Android o inicia un emulador desde Android Studio.
-	2.	Habilita la depuración USB en tu dispositivo Android.
-	3.	Verifica que tu dispositivo esté conectado:
+### 1. Ejecutar la Aplicación en un Emulador o Dispositivo
 
- - flutter devices
+Asegúrate de tener un emulador en ejecución o un dispositivo físico conectado. Luego, ejecuta:
 
-	•	iOS:
-	1.	Conecta tu iPhone o abre un simulador desde Xcode.
-	2.	Verifica que tu dispositivo esté conectado:
-
-- flutter devices
-
-
-
-3. Ejecutar el proyecto
-   
-3.1 En un dispositivo Android
-	1.	Conecta tu dispositivo Android o inicia un emulador.
-	2.	Ejecuta la aplicación:
-
-  -  flutter run
-
-
-3.2 En un dispositivo iOS
-	1.	Abre el proyecto en Xcode:
-      ``` - open ios/Runner.xcworkspace ```
-	2.	Configura la firma del proyecto:
-	•	Ve a Signing & Capabilities.
-	•	Selecciona tu Team (cuenta de Apple).
-	•	Asegúrate de que el Bundle Identifier sea único (por ejemplo, com.tuNombre.flutterApp).
-	•	Marca la opción Automatically manage signing.
-	3.	Corre la aplicación en tu iPhone desde Xcode:
-	•	Selecciona tu dispositivo en la barra superior de Xcode.
-	•	Ve a Product > Run o presiona Cmd + R.
-	4.	También puedes ejecutar directamente desde Flutter:
- 
-   ```bash flutter run```
-
-4. Solucionar “Desarrollador no confiable” en iOS
-
-Si aparece el mensaje “Desarrollador no confiable” al intentar abrir la app en tu dispositivo iOS, sigue estos pasos:
-	1.	Abre Configuración > General > VPN y administración de dispositivos en tu iPhone.
-	2.	Toca el perfil del desarrollador (con tu Apple ID).
-	3.	Toca Confiar en [Nombre del desarrollador].
-
-5. Probar la app en la web (opcional)
-
-Si deseas probar la app en un navegador:
-	1.	Asegúrate de que Chrome esté instalado en tu máquina.
-	2.	Ejecuta:
-
-```flutter run -d chrome```
-
-6. Estructura del proyecto
-
-El proyecto está organizado de la siguiente manera:
-
-```
-lib/
-├── models/                  # Validadores del formulario
-├── screens/                 # Pantallas de la app
-├── main.dart                # Punto de entrada principal
+```bash
+flutter run
 ```
 
+### 2. Interactuar con el Formulario
+```bash
+	•	Email: Introduce un correo electrónico válido.
+	•	Ciudad: Introduce tu ciudad (campo obligatorio).
+	•	Contraseña: Introduce una contraseña que cumpla con los criterios de seguridad.
+	•	Confirmar Contraseña: Repite la contraseña ingresada anteriormente.
+```
+Los mensajes de error aparecerán en tiempo real a medida que interactúas con los campos.
 
-Notas adicionales
-	•	Cuentas de Apple: Si usas una cuenta gratuita, las apps instaladas en dispositivos iOS expiran después de 7 días. Debes volver a firmarlas desde Xcode.
-	•	Flutter doctor: Si encuentras problemas al ejecutar, verifica tu instalación con:
-``` -flutter doctor ```
+### Licencia
 
-
-Con estos pasos, deberías poder clonar y ejecutar el proyecto en cualquier dispositivo. ¡Listo para usar!
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
