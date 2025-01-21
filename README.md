@@ -10,13 +10,17 @@ Este proyecto es un ejemplo de una aplicación Flutter que implementa un formula
 
 ## Capturas de Pantalla
 
-![Formulario Inicial](screenshots/sinerrores.png)
+<img src="screenshots/sinerrores.png" alt="Formulario Inicial" width="300"/>
 *Formulario sin errores visibles al inicio.*
 
-![Formulario con Errores](screenshots/conerrores.png)
+--
+
+<img src="screenshots/conerrores.png" alt="Formulario con Errores" width="300"/>
 *Mensajes de error aparecen al interactuar con los campos.*
 
-![Formulario Enviado](screenshots/enviado.png)
+--
+
+<img src="screenshots/enviado.png" alt="Formulario Enviado" width="300"/>
 *Mensaje de éxito tras enviar el formulario correctamente.*
 
 ## Requisitos
