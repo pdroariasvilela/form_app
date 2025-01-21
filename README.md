@@ -10,16 +10,21 @@ Este documento detalla cómo clonar, instalar y ejecutar el proyecto Flutter, in
    ```bash
    git clone git@github.com:pdroariasvilela/form_app.git
    cd flutter_application_form
+   ```bash
 
 
 2.	Instala las dependencias del proyecto:
-   - flutter pub get
+   
+   ```- flutter pub get```
 
 2. Configurar el entorno
+
 2.1 Verifica tu instalación de Flutter
 
 Asegúrate de que Flutter esté correctamente instalado ejecutando: 
+```bash
 flutter doctor
+```
 
 Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos los requisitos para iOS y Android estén marcados como [✓].
 
@@ -40,6 +45,7 @@ Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos 
 
 
 3. Ejecutar el proyecto
+   
 3.1 En un dispositivo Android
 	1.	Conecta tu dispositivo Android o inicia un emulador.
 	2.	Ejecuta la aplicación:
@@ -49,8 +55,7 @@ Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos 
 
 3.2 En un dispositivo iOS
 	1.	Abre el proyecto en Xcode:
-        - open ios/Runner.xcworkspace
-
+      ``` - open ios/Runner.xcworkspace ```
 	2.	Configura la firma del proyecto:
 	•	Ve a Signing & Capabilities.
 	•	Selecciona tu Team (cuenta de Apple).
@@ -60,7 +65,8 @@ Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos 
 	•	Selecciona tu dispositivo en la barra superior de Xcode.
 	•	Ve a Product > Run o presiona Cmd + R.
 	4.	También puedes ejecutar directamente desde Flutter:
-    flutter run
+ 
+   ```bash flutter run```bash
 
 4. Solucionar “Desarrollador no confiable” en iOS
 
@@ -75,7 +81,7 @@ Si deseas probar la app en un navegador:
 	1.	Asegúrate de que Chrome esté instalado en tu máquina.
 	2.	Ejecuta:
 
-flutter run -d chrome
+```flutter run -d chrome```bash
 
 6. Estructura del proyecto
 
@@ -91,7 +97,7 @@ lib/
 Notas adicionales
 	•	Cuentas de Apple: Si usas una cuenta gratuita, las apps instaladas en dispositivos iOS expiran después de 7 días. Debes volver a firmarlas desde Xcode.
 	•	Flutter doctor: Si encuentras problemas al ejecutar, verifica tu instalación con:
--flutter doctor
+``` -flutter doctor ```bash
 
 
-Con estos pasos, deberías poder clonar y ejecutar el proyecto en cualquier dispositivo. ¡Listo para usar! 
+Con estos pasos, deberías poder clonar y ejecutar el proyecto en cualquier dispositivo. ¡Listo para usar!
