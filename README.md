@@ -87,11 +87,12 @@ Si deseas probar la app en un navegador:
 
 El proyecto está organizado de la siguiente manera:
 
-
+```
 lib/
 ├── models/                  # Validadores del formulario
 ├── screens/                 # Pantallas de la app
 ├── main.dart                # Punto de entrada principal
+```
 
 
 Notas adicionales
