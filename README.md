@@ -7,7 +7,7 @@ Este documento detalla cómo clonar, instalar y ejecutar el proyecto Flutter, in
 ## **1. Clonar el proyecto**
 
 1. Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio:
-   ```bash
+   ```
    git clone git@github.com:pdroariasvilela/form_app.git
    cd flutter_application_form
    ```bash
@@ -66,7 +66,7 @@ Corrige cualquier problema indicado por flutter doctor. Asegúrate de que todos 
 	•	Ve a Product > Run o presiona Cmd + R.
 	4.	También puedes ejecutar directamente desde Flutter:
  
-   ```bash flutter run```bash
+   ```bash flutter run```
 
 4. Solucionar “Desarrollador no confiable” en iOS
 
@@ -81,7 +81,7 @@ Si deseas probar la app en un navegador:
 	1.	Asegúrate de que Chrome esté instalado en tu máquina.
 	2.	Ejecuta:
 
-```flutter run -d chrome```bash
+```flutter run -d chrome```
 
 6. Estructura del proyecto
 
@@ -97,7 +97,7 @@ lib/
 Notas adicionales
 	•	Cuentas de Apple: Si usas una cuenta gratuita, las apps instaladas en dispositivos iOS expiran después de 7 días. Debes volver a firmarlas desde Xcode.
 	•	Flutter doctor: Si encuentras problemas al ejecutar, verifica tu instalación con:
-``` -flutter doctor ```bash
+``` -flutter doctor ```
 
 
 Con estos pasos, deberías poder clonar y ejecutar el proyecto en cualquier dispositivo. ¡Listo para usar!
